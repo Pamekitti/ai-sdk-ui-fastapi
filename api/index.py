@@ -6,17 +6,19 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 from fastapi import FastAPI, Query
 from fastapi.responses import StreamingResponse
-from openai import OpenAI
+from openai import AzureOpenAI
 from .utils.prompt import ClientMessage, convert_to_openai_messages
 from .utils.tools import get_current_weather
 
 
-load_dotenv(".env.local")
+load_dotenv(".env")
 
 app = FastAPI()
 
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
+client = AzureOpenAI(
+    api_key=os.environ.get("AZURE_OPENAI_API_KEY"),
+    api_version=os.environ.get("AZURE_OPENAI_API_VERSION"),
+    azure_endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
 )
 
 
@@ -31,7 +33,7 @@ available_tools = {
 def do_stream(messages: List[ChatCompletionMessageParam]):
     stream = client.chat.completions.create(
         messages=messages,
-        model="gpt-4o",
+        model=os.environ.get("AZURE_OPENAI_MINI_MODEL"),
         stream=True,
         tools=[{
             "type": "function",
@@ -64,7 +66,7 @@ def stream_text(messages: List[ChatCompletionMessageParam], protocol: str = 'dat
 
     stream = client.chat.completions.create(
         messages=messages,
-        model="gpt-4o",
+        model=os.environ.get("AZURE_OPENAI_MINI_MODEL"),
         stream=True,
         tools=[{
             "type": "function",
@@ -129,9 +131,10 @@ def stream_text(messages: List[ChatCompletionMessageParam], protocol: str = 'dat
                 yield '0:{text}\n'.format(text=json.dumps(choice.delta.content))
 
         if chunk.choices == []:
+            # For streaming responses, usage information might not be available
             usage = chunk.usage
-            prompt_tokens = usage.prompt_tokens
-            completion_tokens = usage.completion_tokens
+            prompt_tokens = usage.prompt_tokens if usage else 0
+            completion_tokens = usage.completion_tokens if usage else 0
 
             yield 'e:{{"finishReason":"{reason}","usage":{{"promptTokens":{prompt},"completionTokens":{completion}}},"isContinued":false}}\n'.format(
                 reason="tool-calls" if len(
