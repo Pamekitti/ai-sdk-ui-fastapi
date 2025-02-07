@@ -8,6 +8,7 @@ import { Markdown } from "./markdown";
 import { PreviewAttachment } from "./preview-attachment";
 import { cn } from "@/lib/utils";
 import { Weather } from "./weather";
+import { Chart } from "./chart";
 
 export const PreviewMessage = ({
   message,
@@ -49,15 +50,25 @@ export const PreviewMessage = ({
                 if (state === "result") {
                   const { result } = toolInvocation;
 
-                  return (
-                    <div key={toolCallId}>
-                      {toolName === "get_current_weather" ? (
-                        <Weather weatherAtLocation={result} />
-                      ) : (
-                        <pre>{JSON.stringify(result, null, 2)}</pre>
-                      )}
-                    </div>
-                  );
+                  if (toolName === "get_current_weather") {
+                    return (
+                      <Weather
+                        key={toolCallId}
+                        weatherAtLocation={result}
+                      />
+                    );
+                  }
+
+                  if (toolName === "generate_mock_chart") {
+                    return (
+                      <Chart
+                        key={toolCallId}
+                        options={result}
+                      />
+                    );
+                  }
+
+                  return null;
                 }
                 return (
                   <div

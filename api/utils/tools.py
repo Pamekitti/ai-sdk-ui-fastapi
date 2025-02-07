@@ -18,3 +18,23 @@ def get_current_weather(latitude, longitude):
         # Handle any errors that occur during the request
         print(f"Error fetching weather data: {e}")
         return None
+
+def generate_mock_chart():
+    # Generate a simple mock chart data in ECharts format
+    chart_data = {
+        "title": {
+            "text": "Sample Chart"
+        },
+        "xAxis": {
+            "type": "category",
+            "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        },
+        "yAxis": {
+            "type": "value"
+        },
+        "series": [{
+            "data": [150, 230, 224, 218, 135, 147, 260],
+            "type": "line"
+        }]
+    }
+    return chart_data

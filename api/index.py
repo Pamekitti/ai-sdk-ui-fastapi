@@ -8,7 +8,7 @@ from fastapi import FastAPI, Query
 from fastapi.responses import StreamingResponse
 from openai import AzureOpenAI
 from .utils.prompt import ClientMessage, convert_to_openai_messages
-from .utils.tools import get_current_weather
+from .utils.tools import get_current_weather, generate_mock_chart
 
 
 load_dotenv(".env")
@@ -28,37 +28,8 @@ class Request(BaseModel):
 
 available_tools = {
     "get_current_weather": get_current_weather,
+    "generate_mock_chart": generate_mock_chart,
 }
-
-def do_stream(messages: List[ChatCompletionMessageParam]):
-    stream = client.chat.completions.create(
-        messages=messages,
-        model=os.environ.get("AZURE_OPENAI_MINI_MODEL"),
-        stream=True,
-        tools=[{
-            "type": "function",
-            "function": {
-                "name": "get_current_weather",
-                "description": "Get the current weather at a location",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "latitude": {
-                            "type": "number",
-                            "description": "The latitude of the location",
-                        },
-                        "longitude": {
-                            "type": "number",
-                            "description": "The longitude of the location",
-                        },
-                    },
-                    "required": ["latitude", "longitude"],
-                },
-            },
-        }]
-    )
-
-    return stream
 
 def stream_text(messages: List[ChatCompletionMessageParam], protocol: str = 'data'):
     draft_tool_calls = []
@@ -86,6 +57,18 @@ def stream_text(messages: List[ChatCompletionMessageParam], protocol: str = 'dat
                         },
                     },
                     "required": ["latitude", "longitude"],
+                },
+            },
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "generate_mock_chart",
+                "description": "Generate a simple mock chart using ECharts",
+                "parameters": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
                 },
             },
         }]
