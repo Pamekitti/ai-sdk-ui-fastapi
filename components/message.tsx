@@ -9,6 +9,8 @@ import { PreviewAttachment } from "./preview-attachment";
 import { cn } from "@/lib/utils";
 import { Weather } from "./weather";
 import { Chart } from "./chart";
+import { ChillerSequenceScheduleRequestCard } from "./tool_use_components/ChillerSequenceScheduleRequestCard";
+import { MaintenanceRequestCard } from "./tool_use_components/MaintenanceRequestCard";
 
 export const PreviewMessage = ({
   message,
@@ -45,7 +47,7 @@ export const PreviewMessage = ({
           {message.toolInvocations && message.toolInvocations.length > 0 && (
             <div className="flex flex-col gap-4">
               {message.toolInvocations.map((toolInvocation) => {
-                const { toolName, toolCallId, state } = toolInvocation;
+                const { toolName, toolCallId, state, args } = toolInvocation;
 
                 if (state === "result") {
                   const { result } = toolInvocation;
@@ -68,8 +70,34 @@ export const PreviewMessage = ({
                     );
                   }
 
+                  if (toolName === "get_current_chiller_schedule") {
+                    if (!result.exists) {
+                      return null;
+                    }
+                    return null;
+                  }
+
+                  if (toolName === "add_schedule") {
+                    return (
+                      <ChillerSequenceScheduleRequestCard
+                        key={toolCallId}
+                        result={result}
+                      />
+                    );
+                  }
+
+                  if (toolName === "requests_to_set_maintenance_status") {
+                    return (
+                      <MaintenanceRequestCard
+                        key={toolCallId}
+                        result={result}
+                      />
+                    );
+                  }
+
                   return null;
                 }
+
                 return (
                   <div
                     key={toolCallId}

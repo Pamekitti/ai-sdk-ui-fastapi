@@ -4,9 +4,10 @@ import { PreviewMessage, ThinkingMessage } from "@/components/message";
 import { MultimodalInput } from "@/components/multimodal-input";
 import { Overview } from "@/components/overview";
 import { useScrollToBottom } from "@/hooks/use-scroll-to-bottom";
-import { ToolInvocation } from "ai";
+import { ToolInvocation, Message } from "ai";
 import { useChat } from "ai/react";
 import { toast } from "sonner";
+import { InitMessageList } from "./test_init_message";
 
 export function Chat() {
   const chatId = "001";
@@ -21,7 +22,9 @@ export function Chat() {
     isLoading,
     stop,
   } = useChat({
+    api: "/api/chat_streaming",
     maxSteps: 4,
+    initialMessages: InitMessageList,
     onError: (error) => {
       if (error.message.includes("Too many requests")) {
         toast.error(
@@ -33,6 +36,8 @@ export function Chat() {
 
   const [messagesContainerRef, messagesEndRef] =
     useScrollToBottom<HTMLDivElement>();
+
+  console.log(messages);
 
   return (
     <div className="flex flex-col min-w-0 h-[calc(100dvh-52px)] bg-background">

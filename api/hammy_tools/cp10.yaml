@@ -1,0 +1,2059 @@
+site_id: cp10
+timezone: Asia/Bangkok
+site_metadata:
+  site_name: CP10
+  initial_date: '2025-01-28'
+  business_hours:
+    start_time: null
+    end_time: null
+deployment_config:
+  enabled_services:
+    mongodb: true
+    timescaledb: true
+    frontend: false
+    backend: false
+    alto-dash: true
+  installed_agents:
+    bacnet: true
+    # platform_agent: false
+    # timescaledb: true
+    # mongodb: true
+    # weatherforecast: false
+    # dataintegrity: false
+    # gatewaystatus: false
+    # firebase: false
+    # afdd: false
+    # weathertmd: true
+    # chiller_prediction: false
+    # azureiothub: false
+    # ahu: false
+    chilleraddsubtract: true
+    chillerplantschedule: true
+    chillersequence: true
+    # schpcontrol: false
+    # linenotification: false
+    # uihelper: true
+dash_config:
+  username: null
+  password: null
+  disabled_apps:
+    app_automl: hidden
+  database_setting:
+    datasource: timescaledb
+    kwargs:
+      db_name: postgres
+      host: infra_timescaledb
+      password: Magicalmint@636
+      port: 5432
+      table_name: aggregated_data
+      username: postgres
+    missing_points: {}
+    mongodb:
+      host: infra_mongodb
+      port: 27017
+volttron_agents:
+  bacnet:
+    ip_address: 10.10.20.104
+    interval: 15
+    read_devices:
+      plant:
+        model: plant
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            cooling_rate: analogInput 764
+            cumulative_cooling_energy: analogInput 765
+            cumulative_energy: analogInput 766
+            efficiency: analogInput 767
+            efficiency_annual: analogInput 768
+            efficiency_cdp: analogInput 769
+            efficiency_chiller: analogInput 770
+            efficiency_ct: analogInput 771
+            efficiency_pchp: analogInput 772
+            heat_balance: analogInput 773
+            heat_reject: analogInput 774
+            number_of_running_cdps: analogInput 775
+            number_of_running_chillers: analogInput 776
+            number_of_running_cts: analogInput 777
+            number_of_running_pchps: analogInput 778
+            power: analogInput 779
+            power_all_cdps: analogInput 780
+            power_all_chillers: analogInput 781
+            power_all_cts: analogInput 782
+            power_all_pchps: analogInput 783
+            running_capacity: analogInput 784
+            target_cdw_setpoint: analogInput 785
+            target_chw_setpoint: analogInput 786
+      chilled_water_loop:
+        model: btu_meter
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            cooling_rate: analogInput 168
+            cumulative_cooling_energy: analogInput 173
+            flow_rate: analogInput 194
+            return_water_temperature: analogInput 199
+            supply_water_temperature: analogInput 210
+            water_delta_temperature: analogInput 215
+      condenser_water_loop:
+        model: btu_meter
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            ct_approach_temperature: analogInput 218
+            flow_rate: analogInput 219
+            heat_reject: analogInput 220
+            return_water_temperature: analogInput 221
+            supply_water_temperature: analogInput 222
+            water_delta_temperature: analogInput 223
+      # chiller_5 (SPARE):
+      #   model: chiller
+      #   servers:
+      #   - bacnet_ip: 10.10.20.81
+      #     points:
+      #       carbon_tank_temperature: analogInput 481
+      #       compressor_runtime: analogInput 482
+      #       cond_approach_temperature: analogInput 483
+      #       cond_delta_temperature: analogInput 484
+      #       cond_entering_water_temperature: analogInput 485
+      #       cond_leaving_water_temperature: analogInput 486
+      #       cond_sat_refrig_pressure: analogInput 487
+      #       cond_sat_refrig_temperature: analogInput 488
+      #       cond_water_flow_rate: analogInput 489
+      #       cooling_rate: analogInput 490
+      #       current_average: analogInput 491
+      #       current_l1: analogInput 492
+      #       current_l2: analogInput 493
+      #       current_l3: analogInput 494
+      #       demand_limit_setpoint_local: analogInput 495
+      #       demand_limit_setpoint_read: analogInput 496
+      #       demand_limit_setpoint_write: analogInput 497
+      #       efficiency: analogInput 498
+      #       evap_approach_temperature: analogInput 499
+      #       evap_delta_temperature: analogInput 500
+      #       evap_entering_water_temperature: analogInput 501
+      #       evap_leaving_water_temperature: analogInput 502
+      #       evap_sat_refrig_pressure: analogInput 503
+      #       evap_sat_refrig_temperature: analogInput 504
+      #       evap_water_flow_rate: analogInput 505
+      #       heat_balance: analogInput 506
+      #       heat_reject: analogInput 507
+      #       oil_diff_pressure: analogInput 508
+      #       oil_pump_disc_temperature: analogInput 509
+      #       oil_tank_pressure: analogInput 510
+      #       oil_tank_temperature: analogInput 511
+      #       percentage_rla: analogInput 512
+      #       power: analogInput 513
+      #       power_factor: analogInput 514
+      #       purge_liquid_temperature: analogInput 515
+      #       purge_refrig_cprsr_suction_temperature: analogInput 516
+      #       running_capacity: analogInput 517
+      #       setpoint_local: analogInput 518
+      #       setpoint_read: analogInput 519
+      #       setpoint_write: analogInput 520
+      #       voltage_l1l2: analogInput 521
+      #       voltage_l2l3: analogInput 522
+      #       voltage_l3l1: analogInput 523
+      #       voltage_ll_average: analogInput 524
+      #       alarm: binaryInput 273
+      #       cond_water_flow_status: binaryInput 274
+      #       evap_water_flow_status: binaryInput 275
+      #       status_local: binaryInput 276
+      #       status_read: binaryInput 277
+      #       status_write: binaryInput 278
+      
+      chiller_1:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            carbon_tank_temperature: analogInput 301
+            compressor_runtime: analogInput 302
+            cond_approach_temperature: analogInput 303
+            cond_delta_temperature: analogInput 304
+            cond_entering_water_temperature: analogInput 305
+            cond_leaving_water_temperature: analogInput 306
+            cond_sat_refrig_pressure: analogInput 307
+            cond_sat_refrig_temperature: analogInput 308
+            cond_water_flow_rate: analogInput 309
+            cooling_rate: analogInput 310
+            cumulative_energy: analogInput 311
+            current_average: analogInput 312
+            current_l1: analogInput 313
+            current_l2: analogInput 314
+            current_l3: analogInput 315
+            demand_limit_setpoint_local: analogInput 316
+            demand_limit_setpoint_read: analogInput 317
+            demand_limit_setpoint_write: analogInput 318
+            efficiency: analogInput 319
+            evap_approach_temperature: analogInput 320
+            evap_delta_temperature: analogInput 321
+            evap_entering_water_temperature: analogInput 322
+            evap_leaving_water_temperature: analogInput 323
+            evap_sat_refrig_pressure: analogInput 324
+            evap_sat_refrig_temperature: analogInput 325
+            evap_water_flow_rate: analogInput 326
+            heat_balance: analogInput 327
+            heat_reject: analogInput 328
+            oil_diff_pressure: analogInput 329
+            oil_pump_disc_temperature: analogInput 330
+            oil_tank_pressure: analogInput 331
+            oil_tank_temperature: analogInput 332
+            percentage_rla: analogInput 333
+            power: analogInput 334
+            power_factor: analogInput 335
+            purge_liquid_temperature: analogInput 336
+            purge_refrig_cprsr_suction_temperature: analogInput 337
+            running_capacity: analogInput 338
+            setpoint_local: analogInput 339
+            setpoint_read: analogInput 340
+            setpoint_write: analogInput 341
+            voltage_l1l2: analogInput 342
+            voltage_l2l3: analogInput 343
+            voltage_l3l1: analogInput 344
+            voltage_ll_average: analogInput 345
+            alarm: binaryInput 249
+            cond_water_flow_status: binaryInput 250
+            evap_water_flow_status: binaryInput 251
+            status_local: binaryInput 252
+            status_read: binaryInput 253
+            status_write: binaryInput 254
+      chiller_2:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            carbon_tank_temperature: analogInput 346
+            compressor_runtime: analogInput 347
+            cond_approach_temperature: analogInput 348
+            cond_delta_temperature: analogInput 349
+            cond_entering_water_temperature: analogInput 350
+            cond_leaving_water_temperature: analogInput 351
+            cond_sat_refrig_pressure: analogInput 352
+            cond_sat_refrig_temperature: analogInput 353
+            cond_water_flow_rate: analogInput 354
+            cooling_rate: analogInput 355
+            cumulative_energy: analogInput 356
+            current_average: analogInput 357
+            current_l1: analogInput 358
+            current_l2: analogInput 359
+            current_l3: analogInput 360
+            demand_limit_setpoint_local: analogInput 361
+            demand_limit_setpoint_read: analogInput 362
+            demand_limit_setpoint_write: analogInput 363
+            efficiency: analogInput 364
+            evap_approach_temperature: analogInput 365
+            evap_delta_temperature: analogInput 366
+            evap_entering_water_temperature: analogInput 367
+            evap_leaving_water_temperature: analogInput 368
+            evap_sat_refrig_pressure: analogInput 369
+            evap_sat_refrig_temperature: analogInput 370
+            evap_water_flow_rate: analogInput 371
+            heat_balance: analogInput 372
+            heat_reject: analogInput 373
+            oil_diff_pressure: analogInput 374
+            oil_pump_disc_temperature: analogInput 375
+            oil_tank_pressure: analogInput 376
+            oil_tank_temperature: analogInput 377
+            percentage_rla: analogInput 378
+            power: analogInput 379
+            power_factor: analogInput 380
+            purge_liquid_temperature: analogInput 381
+            purge_refrig_cprsr_suction_temperature: analogInput 382
+            running_capacity: analogInput 383
+            setpoint_local: analogInput 384
+            setpoint_read: analogInput 385
+            setpoint_write: analogInput 386
+            voltage_l1l2: analogInput 387
+            voltage_l2l3: analogInput 388
+            voltage_l3l1: analogInput 389
+            voltage_ll_average: analogInput 390
+            alarm: binaryInput 255
+            cond_water_flow_status: binaryInput 256
+            evap_water_flow_status: binaryInput 257
+            status_local: binaryInput 258
+            status_read: binaryInput 259
+            status_write: binaryInput 260
+      chiller_3:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            carbon_tank_temperature: analogInput 391
+            compressor_runtime: analogInput 392
+            cond_approach_temperature: analogInput 393
+            cond_delta_temperature: analogInput 394
+            cond_entering_water_temperature: analogInput 395
+            cond_leaving_water_temperature: analogInput 396
+            cond_sat_refrig_pressure: analogInput 397
+            cond_sat_refrig_temperature: analogInput 398
+            cond_water_flow_rate: analogInput 399
+            cooling_rate: analogInput 400
+            cumulative_energy: analogInput 401
+            current_average: analogInput 402
+            current_l1: analogInput 403
+            current_l2: analogInput 404
+            current_l3: analogInput 405
+            demand_limit_setpoint_local: analogInput 406
+            demand_limit_setpoint_read: analogInput 407
+            demand_limit_setpoint_write: analogInput 408
+            efficiency: analogInput 409
+            evap_approach_temperature: analogInput 410
+            evap_delta_temperature: analogInput 411
+            evap_entering_water_temperature: analogInput 412
+            evap_leaving_water_temperature: analogInput 413
+            evap_sat_refrig_pressure: analogInput 414
+            evap_sat_refrig_temperature: analogInput 415
+            evap_water_flow_rate: analogInput 416
+            heat_balance: analogInput 417
+            heat_reject: analogInput 418
+            oil_diff_pressure: analogInput 419
+            oil_pump_disc_temperature: analogInput 420
+            oil_tank_pressure: analogInput 421
+            oil_tank_temperature: analogInput 422
+            percentage_rla: analogInput 423
+            power: analogInput 424
+            power_factor: analogInput 425
+            purge_liquid_temperature: analogInput 426
+            purge_refrig_cprsr_suction_temperature: analogInput 427
+            running_capacity: analogInput 428
+            setpoint_local: analogInput 429
+            setpoint_read: analogInput 430
+            setpoint_write: analogInput 431
+            voltage_l1l2: analogInput 432
+            voltage_l2l3: analogInput 433
+            voltage_l3l1: analogInput 434
+            voltage_ll_average: analogInput 435
+            alarm: binaryInput 261
+            cond_water_flow_status: binaryInput 262
+            evap_water_flow_status: binaryInput 263
+            status_local: binaryInput 264
+            status_read: binaryInput 265
+            status_write: binaryInput 266
+      chiller_4:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            carbon_tank_temperature: analogInput 436
+            compressor_runtime: analogInput 437
+            cond_approach_temperature: analogInput 438
+            cond_delta_temperature: analogInput 439
+            cond_entering_water_temperature: analogInput 440
+            cond_leaving_water_temperature: analogInput 441
+            cond_sat_refrig_pressure: analogInput 442
+            cond_sat_refrig_temperature: analogInput 443
+            cond_water_flow_rate: analogInput 444
+            cooling_rate: analogInput 445
+            cumulative_energy: analogInput 446
+            current_average: analogInput 447
+            current_l1: analogInput 448
+            current_l2: analogInput 449
+            current_l3: analogInput 450
+            demand_limit_setpoint_local: analogInput 451
+            demand_limit_setpoint_read: analogInput 452
+            demand_limit_setpoint_write: analogInput 453
+            efficiency: analogInput 454
+            evap_approach_temperature: analogInput 455
+            evap_delta_temperature: analogInput 456
+            evap_entering_water_temperature: analogInput 457
+            evap_leaving_water_temperature: analogInput 458
+            evap_sat_refrig_pressure: analogInput 459
+            evap_sat_refrig_temperature: analogInput 460
+            evap_water_flow_rate: analogInput 461
+            heat_balance: analogInput 462
+            heat_reject: analogInput 463
+            oil_diff_pressure: analogInput 464
+            oil_pump_disc_temperature: analogInput 465
+            oil_tank_pressure: analogInput 466
+            oil_tank_temperature: analogInput 467
+            percentage_rla: analogInput 468
+            power: analogInput 469
+            power_factor: analogInput 470
+            purge_liquid_temperature: analogInput 471
+            purge_refrig_cprsr_suction_temperature: analogInput 472
+            running_capacity: analogInput 473
+            setpoint_local: analogInput 474
+            setpoint_read: analogInput 475
+            setpoint_write: analogInput 476
+            voltage_l1l2: analogInput 477
+            voltage_l2l3: analogInput 478
+            voltage_l3l1: analogInput 479
+            voltage_ll_average: analogInput 480
+            alarm: binaryInput 267
+            cond_water_flow_status: binaryInput 268
+            evap_water_flow_status: binaryInput 269
+            status_local: binaryInput 270
+            status_read: binaryInput 271
+            status_write: binaryInput 272
+      chiller_6:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            carbon_tank_temperature: analogInput 525
+            compressor_runtime: analogInput 526
+            cond_approach_temperature: analogInput 527
+            cond_delta_temperature: analogInput 528
+            cond_entering_water_temperature: analogInput 529
+            cond_leaving_water_temperature: analogInput 530
+            cond_sat_refrig_pressure: analogInput 531
+            cond_sat_refrig_temperature: analogInput 532
+            cond_water_flow_rate: analogInput 533
+            cooling_rate: analogInput 534
+            cumulative_energy: analogInput 535
+            current_average: analogInput 536
+            current_l1: analogInput 537
+            current_l2: analogInput 538
+            current_l3: analogInput 539
+            demand_limit_setpoint_local: analogInput 540
+            demand_limit_setpoint_read: analogInput 541
+            demand_limit_setpoint_write: analogInput 542
+            efficiency: analogInput 543
+            evap_approach_temperature: analogInput 544
+            evap_delta_temperature: analogInput 545
+            evap_entering_water_temperature: analogInput 546
+            evap_leaving_water_temperature: analogInput 547
+            evap_sat_refrig_pressure: analogInput 548
+            evap_sat_refrig_temperature: analogInput 549
+            evap_water_flow_rate: analogInput 550
+            heat_balance: analogInput 551
+            heat_reject: analogInput 552
+            oil_diff_pressure: analogInput 553
+            oil_pump_disc_temperature: analogInput 554
+            oil_tank_pressure: analogInput 555
+            oil_tank_temperature: analogInput 556
+            percentage_rla: analogInput 557
+            power: analogInput 558
+            power_factor: analogInput 559
+            purge_liquid_temperature: analogInput 560
+            purge_refrig_cprsr_suction_temperature: analogInput 561
+            running_capacity: analogInput 562
+            setpoint_local: analogInput 563
+            setpoint_read: analogInput 564
+            setpoint_write: analogInput 565
+            voltage_l1l2: analogInput 566
+            voltage_l2l3: analogInput 567
+            voltage_l3l1: analogInput 568
+            voltage_ll_average: analogInput 569
+            alarm: binaryInput 279
+            cond_water_flow_status: binaryInput 280
+            evap_water_flow_status: binaryInput 281
+            status_local: binaryInput 282
+            status_read: binaryInput 283
+            status_write: binaryInput 284
+      chiller_7:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            carbon_tank_temperature: analogInput 570
+            compressor_runtime: analogInput 571
+            cond_approach_temperature: analogInput 572
+            cond_delta_temperature: analogInput 573
+            cond_entering_water_temperature: analogInput 574
+            cond_leaving_water_temperature: analogInput 575
+            cond_sat_refrig_pressure: analogInput 576
+            cond_sat_refrig_temperature: analogInput 577
+            cond_water_flow_rate: analogInput 578
+            cooling_rate: analogInput 579
+            cumulative_energy: analogInput 580
+            current_average: analogInput 581
+            current_l1: analogInput 582
+            current_l2: analogInput 583
+            current_l3: analogInput 584
+            demand_limit_setpoint_local: analogInput 585
+            demand_limit_setpoint_read: analogInput 586
+            demand_limit_setpoint_write: analogInput 587
+            efficiency: analogInput 588
+            evap_approach_temperature: analogInput 589
+            evap_delta_temperature: analogInput 590
+            evap_entering_water_temperature: analogInput 591
+            evap_leaving_water_temperature: analogInput 592
+            evap_sat_refrig_pressure: analogInput 593
+            evap_sat_refrig_temperature: analogInput 594
+            evap_water_flow_rate: analogInput 595
+            heat_balance: analogInput 596
+            heat_reject: analogInput 597
+            oil_diff_pressure: analogInput 598
+            oil_pump_disc_temperature: analogInput 599
+            oil_tank_pressure: analogInput 600
+            oil_tank_temperature: analogInput 601
+            percentage_rla: analogInput 602
+            power: analogInput 603
+            power_factor: analogInput 604
+            purge_liquid_temperature: analogInput 605
+            purge_refrig_cprsr_suction_temperature: analogInput 606
+            running_capacity: analogInput 607
+            setpoint_local: analogInput 608
+            setpoint_read: analogInput 609
+            setpoint_write: analogInput 610
+            voltage_l1l2: analogInput 611
+            voltage_l2l3: analogInput 612
+            voltage_l3l1: analogInput 613
+            voltage_ll_average: analogInput 614
+            alarm: binaryInput 285
+            cond_water_flow_status: binaryInput 286
+            evap_water_flow_status: binaryInput 287
+            status_local: binaryInput 288
+            status_read: binaryInput 289
+            status_write: binaryInput 290
+      chiller_8:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            carbon_tank_temperature: analogInput 615
+            compressor_runtime: analogInput 616
+            cond_approach_temperature: analogInput 617
+            cond_delta_temperature: analogInput 618
+            cond_entering_water_temperature: analogInput 619
+            cond_leaving_water_temperature: analogInput 620
+            cond_sat_refrig_pressure: analogInput 621
+            cond_sat_refrig_temperature: analogInput 622
+            cond_water_flow_rate: analogInput 623
+            cooling_rate: analogInput 624
+            cumulative_energy: analogInput 625
+            current_average: analogInput 626
+            current_l1: analogInput 627
+            current_l2: analogInput 628
+            current_l3: analogInput 629
+            demand_limit_setpoint_local: analogInput 630
+            demand_limit_setpoint_read: analogInput 631
+            demand_limit_setpoint_write: analogInput 632
+            efficiency: analogInput 633
+            evap_approach_temperature: analogInput 634
+            evap_delta_temperature: analogInput 635
+            evap_entering_water_temperature: analogInput 636
+            evap_leaving_water_temperature: analogInput 637
+            evap_sat_refrig_pressure: analogInput 638
+            evap_sat_refrig_temperature: analogInput 639
+            evap_water_flow_rate: analogInput 640
+            heat_balance: analogInput 641
+            heat_reject: analogInput 642
+            oil_diff_pressure: analogInput 643
+            oil_pump_disc_temperature: analogInput 644
+            oil_tank_pressure: analogInput 645
+            oil_tank_temperature: analogInput 646
+            percentage_rla: analogInput 647
+            power: analogInput 648
+            power_factor: analogInput 649
+            purge_liquid_temperature: analogInput 650
+            purge_refrig_cprsr_suction_temperature: analogInput 651
+            running_capacity: analogInput 652
+            setpoint_local: analogInput 653
+            setpoint_read: analogInput 654
+            setpoint_write: analogInput 655
+            voltage_l1l2: analogInput 656
+            voltage_l2l3: analogInput 657
+            voltage_l3l1: analogInput 658
+            voltage_ll_average: analogInput 659
+            alarm: binaryInput 291
+            cond_water_flow_status: binaryInput 292
+            evap_water_flow_status: binaryInput 293
+            status_local: binaryInput 294
+            status_read: binaryInput 295
+            status_write: binaryInput 296
+      pchp_1:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 687
+            efficiency: analogInput 688
+            frequency_read: analogInput 689
+            frequency_write: analogInput 690
+            power: analogInput 691
+            speed: analogInput 692
+            voltage: analogInput 693
+            alarm: binaryInput 360
+            status_read: binaryInput 361
+            status_write: binaryInput 362
+      pchp_2:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 708
+            efficiency: analogInput 709
+            frequency_read: analogInput 710
+            frequency_write: analogInput 711
+            power: analogInput 712
+            speed: analogInput 713
+            voltage: analogInput 714
+            alarm: binaryInput 369
+            status_read: binaryInput 370
+            status_write: binaryInput 371
+      pchp_3:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 715
+            efficiency: analogInput 716
+            frequency_read: analogInput 717
+            frequency_write: analogInput 718
+            power: analogInput 719
+            speed: analogInput 720
+            voltage: analogInput 721
+            alarm: binaryInput 372
+            status_read: binaryInput 373
+            status_write: binaryInput 374
+      pchp_4:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 722
+            efficiency: analogInput 723
+            frequency_read: analogInput 724
+            frequency_write: analogInput 725
+            power: analogInput 726
+            speed: analogInput 727
+            voltage: analogInput 728
+            alarm: binaryInput 375
+            status_read: binaryInput 376
+            status_write: binaryInput 377
+      pchp_5:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 729
+            efficiency: analogInput 730
+            frequency_read: analogInput 731
+            frequency_write: analogInput 732
+            power: analogInput 733
+            speed: analogInput 734
+            voltage: analogInput 735
+            alarm: binaryInput 378
+            status_read: binaryInput 379
+            status_write: binaryInput 380
+      pchp_6:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 736
+            efficiency: analogInput 737
+            frequency_read: analogInput 738
+            frequency_write: analogInput 739
+            power: analogInput 740
+            speed: analogInput 741
+            voltage: analogInput 742
+            alarm: binaryInput 381
+            status_read: binaryInput 382
+            status_write: binaryInput 383
+      pchp_7:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 743
+            efficiency: analogInput 744
+            frequency_read: analogInput 745
+            frequency_write: analogInput 746
+            power: analogInput 747
+            speed: analogInput 748
+            voltage: analogInput 749
+            alarm: binaryInput 384
+            status_read: binaryInput 385
+            status_write: binaryInput 386
+      pchp_8:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 750
+            efficiency: analogInput 751
+            frequency_read: analogInput 752
+            frequency_write: analogInput 753
+            power: analogInput 754
+            speed: analogInput 755
+            voltage: analogInput 756
+            alarm: binaryInput 387
+            status_read: binaryInput 388
+            status_write: binaryInput 389
+      pchp_9:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 757
+            efficiency: analogInput 758
+            frequency_read: analogInput 759
+            frequency_write: analogInput 760
+            power: analogInput 761
+            speed: analogInput 762
+            voltage: analogInput 763
+            alarm: binaryInput 390
+            status_read: binaryInput 391
+            status_write: binaryInput 392
+      pchp_10:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 694
+            efficiency: analogInput 695
+            frequency_read: analogInput 696
+            frequency_write: analogInput 697
+            power: analogInput 698
+            speed: analogInput 699
+            voltage: analogInput 700
+            alarm: binaryInput 363
+            status_read: binaryInput 364
+            status_write: binaryInput 365
+      pchp_11:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 701
+            efficiency: analogInput 702
+            frequency_read: analogInput 703
+            frequency_write: analogInput 704
+            power: analogInput 705
+            speed: analogInput 706
+            voltage: analogInput 707
+            alarm: binaryInput 366
+            status_read: binaryInput 367
+            status_write: binaryInput 368
+      cdp_1:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 224
+            efficiency: analogInput 225
+            frequency_read: analogInput 226
+            frequency_write: analogInput 227
+            power: analogInput 228
+            speed: analogInput 229
+            voltage: analogInput 230
+            alarm: binaryInput 216
+            status_read: binaryInput 217
+            status_write: binaryInput 218
+      cdp_2:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 245
+            efficiency: analogInput 246
+            frequency_read: analogInput 247
+            frequency_write: analogInput 248
+            power: analogInput 249
+            speed: analogInput 250
+            voltage: analogInput 251
+            alarm: binaryInput 225
+            status_read: binaryInput 226
+            status_write: binaryInput 227
+      cdp_3:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 252
+            efficiency: analogInput 253
+            frequency_read: analogInput 254
+            frequency_write: analogInput 255
+            power: analogInput 256
+            speed: analogInput 257
+            voltage: analogInput 258
+            alarm: binaryInput 228
+            status_read: binaryInput 229
+            status_write: binaryInput 230
+      cdp_4:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 259
+            efficiency: analogInput 260
+            frequency_read: analogInput 261
+            frequency_write: analogInput 262
+            power: analogInput 263
+            speed: analogInput 264
+            voltage: analogInput 265
+            alarm: binaryInput 231
+            status_read: binaryInput 232
+            status_write: binaryInput 233
+      cdp_5:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 266
+            efficiency: analogInput 267
+            frequency_read: analogInput 268
+            frequency_write: analogInput 269
+            power: analogInput 270
+            speed: analogInput 271
+            voltage: analogInput 272
+            alarm: binaryInput 234
+            status_read: binaryInput 235
+            status_write: binaryInput 236
+      cdp_6:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 273
+            efficiency: analogInput 274
+            frequency_read: analogInput 275
+            frequency_write: analogInput 276
+            power: analogInput 277
+            speed: analogInput 278
+            voltage: analogInput 279
+            alarm: binaryInput 237
+            status_read: binaryInput 238
+            status_write: binaryInput 239
+      cdp_7:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 280
+            efficiency: analogInput 281
+            frequency_read: analogInput 282
+            frequency_write: analogInput 283
+            power: analogInput 284
+            speed: analogInput 285
+            voltage: analogInput 286
+            alarm: binaryInput 240
+            status_read: binaryInput 241
+            status_write: binaryInput 242
+      cdp_8:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 287
+            efficiency: analogInput 288
+            frequency_read: analogInput 289
+            frequency_write: analogInput 290
+            power: analogInput 291
+            speed: analogInput 292
+            voltage: analogInput 293
+            alarm: binaryInput 243
+            status_read: binaryInput 244
+            status_write: binaryInput 245
+      cdp_9:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 294
+            efficiency: analogInput 295
+            frequency_read: analogInput 296
+            frequency_write: analogInput 297
+            power: analogInput 298
+            speed: analogInput 299
+            voltage: analogInput 300
+            alarm: binaryInput 246
+            status_read: binaryInput 247
+            status_write: binaryInput 248
+      cdp_10:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 231
+            efficiency: analogInput 232
+            frequency_read: analogInput 233
+            frequency_write: analogInput 234
+            power: analogInput 235
+            speed: analogInput 236
+            voltage: analogInput 237
+            alarm: binaryInput 219
+            status_read: binaryInput 220
+            status_write: binaryInput 221
+      cdp_11:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            current: analogInput 238
+            efficiency: analogInput 239
+            frequency_read: analogInput 240
+            frequency_write: analogInput 241
+            power: analogInput 242
+            speed: analogInput 243
+            voltage: analogInput 244
+            alarm: binaryInput 222
+            status_read: binaryInput 223
+            status_write: binaryInput 224
+      mvct_r_1_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 150
+            status_read: binaryInput 151
+            status_write: binaryInput 152
+      mvct_r_2_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 156
+            status_read: binaryInput 157
+            status_write: binaryInput 158
+      mvct_r_3_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 162
+            status_read: binaryInput 163
+            status_write: binaryInput 164
+      mvct_r_4_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 168
+            status_read: binaryInput 169
+            status_write: binaryInput 170
+      mvct_s_1_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 183
+            status_read: binaryInput 184
+            status_write: binaryInput 185
+      mvct_s_2_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 189
+            status_read: binaryInput 190
+            status_write: binaryInput 191
+      mvct_s_3_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 195
+            status_read: binaryInput 196
+            status_write: binaryInput 197
+      mvct_s_4_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 201
+            status_read: binaryInput 202
+            status_write: binaryInput 203
+      ct_1_1:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 297
+            status_read: binaryInput 298
+            status_write: binaryInput 299
+      ct_2_1:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 309
+            status_read: binaryInput 310
+            status_write: binaryInput 311
+      ct_3_1:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 321
+            status_read: binaryInput 322
+            status_write: binaryInput 323
+      ct_4_1:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 333
+            status_read: binaryInput 334
+            status_write: binaryInput 335
+      ct_5_1:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 345
+            status_read: binaryInput 346
+            status_write: binaryInput 347
+      ct_6_1:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 351
+            status_read: binaryInput 352
+            status_write: binaryInput 353
+      mvct_r_1_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 153
+            status_read: binaryInput 154
+            status_write: binaryInput 155
+      mvct_r_2_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 159
+            status_read: binaryInput 160
+            status_write: binaryInput 161
+      mvct_r_3_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 165
+            status_read: binaryInput 166
+            status_write: binaryInput 167
+      mvct_r_4_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 171
+            status_read: binaryInput 172
+            status_write: binaryInput 173
+      mvct_s_1_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 186
+            status_read: binaryInput 187
+            status_write: binaryInput 188
+      mvct_s_2_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 192
+            status_read: binaryInput 193
+            status_write: binaryInput 194
+      mvct_s_3_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 198
+            status_read: binaryInput 199
+            status_write: binaryInput 200
+      mvct_s_4_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 204
+            status_read: binaryInput 205
+            status_write: binaryInput 206
+      ct_1_2:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 300
+            status_read: binaryInput 301
+            status_write: binaryInput 302
+      ct_2_2:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 312
+            status_read: binaryInput 313
+            status_write: binaryInput 314
+      ct_3_2:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 324
+            status_read: binaryInput 325
+            status_write: binaryInput 326
+      ct_4_2:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 336
+            status_read: binaryInput 337
+            status_write: binaryInput 338
+      ct_5_2:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 348
+            status_read: binaryInput 349
+            status_write: binaryInput 350
+      ct_6_2:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 354
+            status_read: binaryInput 355
+            status_write: binaryInput 356
+      ct_1_3:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 303
+            status_read: binaryInput 304
+            status_write: binaryInput 305
+      ct_2_3:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 315
+            status_read: binaryInput 316
+            status_write: binaryInput 317
+      ct_3_3:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 327
+            status_read: binaryInput 328
+            status_write: binaryInput 329
+      ct_4_3:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 339
+            status_read: binaryInput 340
+            status_write: binaryInput 341
+      ct_1_4:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 306
+            status_read: binaryInput 307
+            status_write: binaryInput 308
+      ct_2_4:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 318
+            status_read: binaryInput 319
+            status_write: binaryInput 320
+      ct_3_4:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 330
+            status_read: binaryInput 331
+            status_write: binaryInput 332
+      ct_4_4:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 342
+            status_read: binaryInput 343
+            status_write: binaryInput 344
+      mvct_r_5:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 174
+            status_read: binaryInput 175
+            status_write: binaryInput 176
+      mvct_s_5:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 207
+            status_read: binaryInput 208
+            status_write: binaryInput 209
+      mvct_r_6:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 177
+            status_read: binaryInput 178
+            status_write: binaryInput 179
+      mvct_s_6:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 210
+            status_read: binaryInput 211
+            status_write: binaryInput 212
+      mvct_r_7:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 180
+            status_read: binaryInput 181
+            status_write: binaryInput 182
+      mvct_s_7:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 213
+            status_read: binaryInput 214
+            status_write: binaryInput 215
+      ct_7:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 357
+            status_read: binaryInput 358
+            status_write: binaryInput 359
+      mv_riser_a:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 1
+            status_read: binaryInput 5
+            status_write: binaryInput 9
+      mv_riser_b:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 13
+            status_read: binaryInput 17
+            status_write: binaryInput 20
+      mv_riser_c:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 23
+            status_read: binaryInput 26
+            status_write: binaryInput 27
+      mv_riser_cinema:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 28
+            status_read: binaryInput 35
+            status_write: binaryInput 36
+      mv_riser_cpn_office:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 37
+            status_read: binaryInput 44
+            status_write: binaryInput 45
+      mv_riser_d:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 46
+            status_read: binaryInput 53
+            status_write: binaryInput 54
+      mv_riser_fitness:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 55
+            status_read: binaryInput 62
+            status_write: binaryInput 63
+      mv_riser_g:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 64
+            status_read: binaryInput 71
+            status_write: binaryInput 72
+      mv_riser_ice_skate:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 73
+            status_read: binaryInput 80
+            status_write: binaryInput 81
+      mv_riser_office_tower:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 82
+            status_read: binaryInput 89
+            status_write: binaryInput 90
+      mvcd_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 91
+            status_read: binaryInput 98
+            status_write: binaryInput 99
+      mvch_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 126
+            status_read: binaryInput 127
+            status_write: binaryInput 128
+      mvcd_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 100
+            status_read: binaryInput 106
+            status_write: binaryInput 107
+      mvch_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 129
+            status_read: binaryInput 130
+            status_write: binaryInput 131
+      mvcd_3:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 108
+            status_read: binaryInput 109
+            status_write: binaryInput 110
+      mvch_3:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 132
+            status_read: binaryInput 133
+            status_write: binaryInput 134
+      mvcd_4:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 111
+            status_read: binaryInput 112
+            status_write: binaryInput 113
+      mvch_4:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 135
+            status_read: binaryInput 136
+            status_write: binaryInput 137
+      mvcd_5:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 114
+            status_read: binaryInput 115
+            status_write: binaryInput 116
+      mvch_5:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 138
+            status_read: binaryInput 139
+            status_write: binaryInput 140
+      mvcd_6:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 117
+            status_read: binaryInput 118
+            status_write: binaryInput 119
+      mvch_6:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 141
+            status_read: binaryInput 142
+            status_write: binaryInput 143
+      mvcd_7:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 120
+            status_read: binaryInput 121
+            status_write: binaryInput 122
+      mvch_7:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 144
+            status_read: binaryInput 145
+            status_write: binaryInput 146
+      mvcd_8:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 123
+            status_read: binaryInput 124
+            status_write: binaryInput 125
+      mvch_8:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            alarm: binaryInput 147
+            status_read: binaryInput 148
+            status_write: binaryInput 149
+      outdoor_weather_station:
+        model: plant
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            drybulb_temperature: analogInput 682
+            drybulb_temperature_c: analogInput 683
+            humidity: analogInput 684
+            wetbulb_temperature: analogInput 685
+            wetbulb_temperature_c: analogInput 686
+      ACC_1:
+        model: power_meter
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            cumulative_energy: analogInput 790
+            current_average: analogInput 791
+            current_l1: analogInput 792
+            current_l2: analogInput 793
+            current_l3: analogInput 794
+            daily_cumualtive_energy: analogInput 795
+            power: analogInput 796
+            power_factor: analogInput 797
+            voltage_l1l2: analogInput 798
+            voltage_l2l3: analogInput 799
+            voltage_l3l1: analogInput 800
+            voltage_ll_average: analogInput 801
+            yesterday_cumualtive_energy: analogInput 802
+      ACC_2:
+        model: power_meter
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            cumulative_energy: analogInput 805
+            current_average: analogInput 806
+            current_l1: analogInput 807
+            current_l2: analogInput 808
+            current_l3: analogInput 809
+            daily_cumualtive_energy: analogInput 810
+            power: analogInput 811
+            power_factor: analogInput 812
+            voltage_l1l2: analogInput 813
+            voltage_l2l3: analogInput 814
+            voltage_l3l1: analogInput 815
+            voltage_ll_average: analogInput 816
+            yesterday_cumualtive_energy: analogInput 817
+      ACC_3:
+        model: power_meter
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            cumulative_energy: analogInput 820
+            current_average: analogInput 821
+            current_l1: analogInput 822
+            current_l2: analogInput 823
+            current_l3: analogInput 824
+            daily_cumualtive_energy: analogInput 825
+            power: analogInput 826
+            power_factor: analogInput 827
+            voltage_l1l2: analogInput 828
+            voltage_l2l3: analogInput 829
+            voltage_l3l1: analogInput 830
+            voltage_ll_average: analogInput 831
+            yesterday_cumualtive_energy: analogInput 832
+      ACC_4:
+        model: power_meter
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            cumulative_energy: analogInput 835
+            current_average: analogInput 836
+            current_l1: analogInput 837
+            current_l2: analogInput 838
+            current_l3: analogInput 839
+            daily_cumualtive_energy: analogInput 840
+            power: analogInput 841
+            power_factor: analogInput 842
+            voltage_l1l2: analogInput 843
+            voltage_l2l3: analogInput 844
+            voltage_l3l1: analogInput 845
+            voltage_ll_average: analogInput 846
+            yesterday_cumualtive_energy: analogInput 847
+      chilled_dpt:
+        model: dpt_sensor
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            delta_pressure: analogInput 660
+            return_pressure: analogInput 661
+            supply_pressure: analogInput 662
+      indoor_air_quality_1:
+        model: indoor_air_quality_sensor
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            humidity: analogInput 666
+            temperature: analogInput 667
+      indoor_air_quality_2:
+        model: indoor_air_quality_sensor
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            humidity: analogInput 668
+            temperature: analogInput 669
+      indoor_air_quality_3:
+        model: indoor_air_quality_sensor
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            humidity: analogInput 670
+            temperature: analogInput 671
+      indoor_air_quality_4:
+        model: indoor_air_quality_sensor
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            humidity: analogInput 672
+            temperature: analogInput 673
+      indoor_air_quality_5:
+        model: indoor_air_quality_sensor
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            humidity: analogInput 674
+            temperature: analogInput 675
+      indoor_air_quality_6:
+        model: indoor_air_quality_sensor
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            humidity: analogInput 676
+            temperature: analogInput 677
+      indoor_air_quality_7:
+        model: indoor_air_quality_sensor
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            humidity: analogInput 678
+            temperature: analogInput 679
+      indoor_air_quality_8:
+        model: indoor_air_quality_sensor
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            humidity: analogInput 680
+            temperature: analogInput 681
+      last_ahu:
+        model: dpt_sensor
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            delta_pressure: analogInput 663
+            return_pressure: analogInput 664
+            supply_pressure: analogInput 665
+    write_devices:
+      chiller_1:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 63
+      chiller_2:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 65
+      chiller_3:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 67
+      chiller_4:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 69
+      # chiller_5:
+      #   model: chiller
+      #   servers:
+      #   - bacnet_ip: 10.10.20.81
+      #     points:
+      #       status_write: binaryOutput 71
+      chiller_6:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 73
+      chiller_7:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 75
+      chiller_8:
+        model: chiller
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 77
+      pchp_1:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 79
+      pchp_2:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 47
+      pchp_3:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 49
+      pchp_4:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 50
+      pchp_5:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 44
+      pchp_6:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 46
+      pchp_7:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 48
+      pchp_8:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 78
+      pchp_9:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 0
+      pchp_10:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 43
+      pchp_11:
+        model: pchp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 45
+      cdp_1:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 60
+      cdp_2:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 66
+      cdp_3:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 68
+      cdp_4:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 70
+      cdp_5:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 72
+      cdp_6:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 74
+      cdp_7:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 76
+      cdp_8:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 59
+      cdp_9:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 61
+      cdp_10:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 62
+      cdp_11:
+        model: cdp
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 64
+      mvcd_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 42
+      mvch_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 51
+      mvcd_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 35
+      mvch_2:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 52
+      mvcd_3:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 37
+      mvch_3:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 53
+      mvcd_4:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 36
+      mvch_4:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 54
+      mvcd_5:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 41
+      mvch_5:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 55
+      mvcd_6:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 38
+      mvch_6:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 56
+      mvcd_7:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 39
+      mvch_7:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 57
+      mvcd_8:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 40
+      mvch_8:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 58
+      ct_1_1:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 86
+      ct_3_1:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 87
+      ct_2_1:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 88
+      mvct_s_1_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 92
+      mvct_s_2_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 93
+      mvct_s_3_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 94
+      mvct_r_1_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 95
+      mvct_r_2_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 96
+      mvct_r_3_1:
+        model: binary_motorized_valve
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 91
+      ct_1_2:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 89
+      ct_3_2:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 90
+      ct_2_2:
+        model: ct
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            status_write: binaryOutput 80
+    ui_helper_devices:
+      ui_next_actions:
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            next_action_timestamp_1: analogOutput 25
+            next_action_timestamp_2: analogOutput 26
+            next_action_timestamp_3: analogOutput 27
+            next_action_timestamp_4: analogOutput 28
+            next_action_timestamp_5: analogOutput 29
+            next_action_timestamp_6: analogOutput 24
+            next_action_color_1: multiStateOutput 1
+            next_action_color_2: multiStateOutput 2
+            next_action_color_3: multiStateOutput 3
+            next_action_color_4: multiStateOutput 4
+            next_action_color_5: multiStateOutput 5
+            next_action_color_6: multiStateOutput 6
+            next_action_title_1: characterstringValue 0
+            next_action_description_1: characterstringValue 1
+            next_action_title_2: characterstringValue 2
+            next_action_description_2: characterstringValue 3
+            next_action_title_3: characterstringValue 4
+            next_action_description_3: characterstringValue 5
+            next_action_title_4: characterstringValue 6
+            next_action_description_4: characterstringValue 7
+            next_action_title_5: characterstringValue 8
+            next_action_description_5: characterstringValue 9
+            next_action_title_6: characterstringValue 10
+            next_action_description_6: characterstringValue 11
+      ui_add_subtract:
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            add_subtract_timestamp: analogOutput 31
+            cooldown_timer_timestamp: analogOutput 30
+            display_add_subtract_notification: binaryOutput 81
+            cancel_chiller_add_subtract: binaryOutput 82
+            display_add_subtract_cooldown: binaryOutput 83
+            cancel_chiller_add_subtract_cooldown: binaryOutput 84
+            add_subtract_notification_title: characterstringValue 12
+            add_subtract_notification_text: characterstringValue 13
+            cooldown_timer_title: characterstringValue 14
+            cooldown_timer_text: characterstringValue 15
+      ui_afdd:
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            display_afdd_alert: binaryOutput 85
+            alert_priority: multiStateOutput 0
+            afdd_text: characterstringValue 16
+      ui_weather_forecast:
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            last_update_timestamp: analogOutput 33
+            temperature_forecast_1h: analogOutput 34
+            temperature_forecast_2h: analogOutput 35
+            temperature_forecast_3h: analogOutput 36
+            temperature_forecast_4h: analogOutput 37
+            temperature_forecast_5h: analogOutput 38
+            temperature_forecast_6h: analogOutput 39
+            temperature_forecast_7h: analogOutput 40
+            temperature_forecast_8h: analogOutput 41
+            temperature_now: analogOutput 42
+            weather_condition_forecast_1h: multiStateOutput 8
+            weather_condition_forecast_2h: multiStateOutput 9
+            weather_condition_forecast_3h: multiStateOutput 10
+            weather_condition_forecast_4h: multiStateOutput 11
+            weather_condition_forecast_5h: multiStateOutput 12
+            weather_condition_forecast_6h: multiStateOutput 13
+            weather_condition_forecast_7h: multiStateOutput 14
+            weather_condition_forecast_8h: multiStateOutput 15
+            weather_condition_now: multiStateOutput 7
+            time_text_1h: characterstringValue 17
+            time_text_2h: characterstringValue 18
+            time_text_3h: characterstringValue 19
+            time_text_4h: characterstringValue 20
+            time_text_5h: characterstringValue 21
+            time_text_6h: characterstringValue 22
+            time_text_7h: characterstringValue 23
+            time_text_8h: characterstringValue 24
+            time_text_now: characterstringValue 25
+      ui_sequence_status:
+        servers:
+        - bacnet_ip: 10.10.20.81
+          points:
+            chiller_1_stage: multiStateOutput 17
+            chiller_2_stage: multiStateOutput 18
+            chiller_3_stage: multiStateOutput 19
+            chiller_4_stage: multiStateOutput 20
+            chiller_6_stage: multiStateOutput 21
+            chiller_7_stage: multiStateOutput 22
+            chiller_8_stage: multiStateOutput 16
+  mongodb:
+    host: 0.0.0.0
+    port: 27017
+  timescaledb:
+    db_host: localhost
+    db_name: postgres
+    username: postgres
+    db_password: Magicalmint@636
+    db_port: 5432
+    subscription_topics:
+      afdd_history:
+      - afdd_history
+      chiller_prediction:
+      - chiller_prediction
+      control_action:
+      - control_action
+      raw_data:
+      - datalogger
+      - calculated_data
+      weather_forecast:
+      - weather_forecast
+  weathertmd:
+    access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjUxMzc5NzA2ZmU1ZmJkMjBiYmQwNWIxMDJkNmM1N2MwOTMzYzc0Yjk5ODg5YjM1ZDdjZDI0ZTZiYTI5M2NjYzMwMjM4MDBmZGZhMzEwOWY5In0.eyJhdWQiOiIyIiwianRpIjoiNTEzNzk3MDZmZTVmYmQyMGJiZDA1YjEwMmQ2YzU3YzA5MzNjNzRiOTk4ODliMzVkN2NkMjRlNmJhMjkzY2NjMzAyMzgwMGZkZmEzMTA5ZjkiLCJpYXQiOjE3MjY0ODQ0MjcsIm5iZiI6MTcyNjQ4NDQyNywiZXhwIjoxNzU4MDIwNDI3LCJzdWIiOiIzNDQ0Iiwic2NvcGVzIjpbXX0.gAR3B-I6bL5EHQlvA0I95Wx92GCTuJ8p8mmXk8Im8o2u152NV2LGTEbj9qMO7SfHIDoUtMllHdgoPVwflXwBd4XPisYgR29HAB2DGqtu7YlaYS_G--A7AQqL2nLM9AWY5bkAzUqfYcTC1ltpLlZSRCsyedKg1LQQVpGo3cIor6w00ZtowNoMY1t9kuQ5aXQXPqk1O0HV2g4Q1lPlKej-z3J7T1g-GUAmDZhf3vBxXdh1bD4AlpoMDomzliCTUkqZyHRmbBJytGfnm1EcgMyoZi0xBIw9KfP_6yiVpqy5flJS3oi5lGr7brRDtj1j59OWr6e7oRNWbxFLDIGfNpg7KxNKP2M1pb79zdNl9MLRHCKPndSsm6ia69P0gMViktSZPiVjBmjD0PFrKLMESvK-pNrE_9cVQ_eBfYbkEqdzxxwVl8nLIYWLTxAirruuRjEnYD58JexWflDfR2BY9Hq-DPG-Pv9i1Z86Vz0ej1qReG153C_vR3yFcsUdNEAcHIOCFqU4Uq6L6s6woUrc_G-XihWHd5lqmVrLjBjYnltoCceQCFy8mVtDijWXVGhIHMxlc8l1F5VU90jBt0XLElQea4wgr0HQWRPbkR2boaQFPUFK3kdlE9Be2LokSmMJLQKd8rgM6aWHmd0DvneQgPXwfnrwkZeiFJGywDPUlHcNX50
+    latitude: 13.7563
+    longitude: 100.5018
