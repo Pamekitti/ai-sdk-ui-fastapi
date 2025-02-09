@@ -22,13 +22,13 @@ import { Textarea } from "./ui/textarea";
 const suggestedActions = [
   {
     title: "What is the weather",
-    label: "in San Francisco?",
-    action: "What is the weather in San Francisco?",
+    label: "in Bangkok?",
+    action: "What is the weather in Bangkok?",
   },
   {
-    title: "How is python useful",
-    label: "for AI engineers?",
-    action: "How is python useful for AI engineers?",
+    title: "Generate Visualization",
+    label: "for today's chiller plant load profile",
+    action: "How today's chiller plant load profile",
   },
 ];
 

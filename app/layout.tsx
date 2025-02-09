@@ -3,15 +3,17 @@ import { GeistSans } from "geist/font/sans";
 import { Toaster } from "sonner";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
+import { FloatingChat } from "@/components/floating-chat";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata = {
-  title: "AI SDK Python Streaming Preview",
+  title: "Alto CERO AI Assistant",
   description:
-    "Use the Data Stream Protocol to stream chat completions from a Python endpoint (FastAPI) and display them using the useChat hook in your Next.js application.",
+    "Alto CERO AI Assistant is an intelligent building management system that uses AI to optimize your facility operations.",
   openGraph: {
     images: [
       {
-        url: "/og?title=AI SDK Python Streaming Preview",
+        url: "/og?title=Alto CERO AI Assistant",
       },
     ],
   },
@@ -19,7 +21,7 @@ export const metadata = {
     card: "summary_large_image",
     images: [
       {
-        url: "/og?title=AI SDK Python Streaming Preview",
+        url: "/og?title=Alto CERO AI Assistant",
       },
     ],
   },
@@ -31,12 +33,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head></head>
-      <body className={cn(GeistSans.className, "antialiased dark")}>
-        <Toaster position="top-center" richColors />
-        <Navbar />
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body className={cn(GeistSans.className, "antialiased min-h-screen")}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Toaster position="top-center" richColors />
+          <Navbar />
+          {children}
+          <FloatingChat />
+        </ThemeProvider>
       </body>
     </html>
   );
