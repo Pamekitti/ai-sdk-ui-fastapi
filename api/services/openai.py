@@ -99,7 +99,7 @@ class OpenAIService:
             "type": "function",
             "function": {
                 "name": "generate_mock_chart",
-                "description": "Generate a simple mock chart using ECharts",
+                "description": "Generate a simple mock chart for today's chiller plant load profile using ECharts",
                 "parameters": {
                     "type": "object",
                     "properties": {},

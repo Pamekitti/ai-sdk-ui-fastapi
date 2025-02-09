@@ -124,9 +124,9 @@ const InitWeatherMessage: Message = {
 };
 
 export const InitMessageList: Message[] = [
-    // InitMessage,
-    // InitWeatherMessage,
-    // InitScheduleMessage,
-    // InitMaintenanceMessage
-  ];
+  // InitMessage,
+  // InitWeatherMessage,
+  // InitScheduleMessage,
+  // InitMaintenanceMessage
+];
 
